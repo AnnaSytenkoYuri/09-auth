@@ -2,9 +2,9 @@
 import css from "./NoteForm.module.css";
 import React, { useId } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createNote } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import { useDraftStore } from "@/lib/store/noteStore";
+import { createNote } from "@/lib/api/clientApi";
 
 export default function NoteForm() {
   const queryClient = useQueryClient();

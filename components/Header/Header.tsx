@@ -1,6 +1,7 @@
 import Link from "next/link";
 import css from "./Header.module.css";
 import TagsMenu from "../TagsMenu/TagsMenu";
+import AuthNavigation from "../AuthNavigation/AuthNavigation";
 
 
 export default async function Header() {
@@ -18,9 +19,8 @@ export default async function Header() {
           {/* <li>
             <Link href='/notes/filter/all'>All notes</Link>
           </li> */}
-          <li>
             <TagsMenu />
-          </li>
+            <AuthNavigation/>
         </ul>
       </nav>
     </header>
