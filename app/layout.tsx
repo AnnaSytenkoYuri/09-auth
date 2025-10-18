@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: "NoteHub",
     description:
       "NoteHub is a simple and efficient application designed for managing personal notes",
-    url: "https://notehub.com", // need to add production link
+    url: "https://notehub.com",
     images: [
       {
         url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
@@ -58,7 +58,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-// Підключіть шрифт Roboto глобально для всього застосунку у файлі app/layout.tsx.
-// Для цього скористайтеся вбудованою підтримкою з next/font/google, обовʼязково
-// вказавши відповідні налаштування (weight, variable, display та subsets).

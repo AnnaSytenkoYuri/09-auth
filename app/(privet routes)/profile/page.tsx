@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { getServerMe } from "@/lib/api/serverApi";
 import css from "./ProfilePage.module.css";
 import Image from "next/image";
@@ -44,6 +45,7 @@ export default async function Profile() {
               width={120}
               height={120}
               className={css.avatar}
+              priority={true}
             />
           </div>
           <div className={css.profileInfo}>

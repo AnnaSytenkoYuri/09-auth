@@ -3,32 +3,28 @@
 import Image from "next/image";
 import css from "./EditProfilePage.module.css";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { User } from "@/types/user";
-import { api, ApiError } from "@/app/api/api";
+import { getMe, updateMe } from "@/lib/api/clientApi";
 
 export default function EditProfile(user: User) {
   const router = useRouter();
-  const [error, setError] = useState("");
+  const [username, setUsername] = useState("");
 
-  const handleSave = async (formData: FormData) => {
-    try {
-      const values = Object.fromEntries(formData) as unknown as User;
-      const username = values.username;
+  useEffect(() => {
+    getMe().then((user) => {
+      setUsername(user.username ?? "");
+    });
+  },[]);
 
-      const res = await api.post("/users/me", { username });
-      if (res) {
-        router.push("/profile");
-      } else {
-        setError("Invalid username");
-      }
-    } catch (error) {
-      setError(
-        (error as ApiError).response?.data?.error ??
-          (error as ApiError).message ??
-          "Oops... some error"
-      );
-    }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  };
+
+  const handleSaveUser = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await updateMe({ username });
+    router.push("/profile");
   };
 
   const handleCancel = () => {
@@ -44,22 +40,22 @@ export default function EditProfile(user: User) {
           width={120}
           height={120}
           className={css.avatar}
+          priority={true}
         />
 
-        <form action={handleSave} className={css.profileInfo}>
+        <form onSubmit={handleSaveUser} className={css.profileInfo}>
           <div className={css.usernameWrapper}>
             <label htmlFor="username">Username:</label>
             <input
               id="username"
               type="text"
               className={css.input}
-              defaultValue={user.username}
+              onChange={handleChange}
+              value={username}
             />
           </div>
 
           <p>Email: {user.email}</p>
-          {error && <p className={css.error}>{error}</p>}
-
           <div className={css.actions}>
             <button type="submit" className={css.saveButton}>
               Save

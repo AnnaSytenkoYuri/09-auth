@@ -124,3 +124,11 @@ export async function logout():Promise<void> {
  await nextServer.post('/auth/logout')
 }
 
+
+export interface UpdateMeRequest{
+  username: string;
+}
+export async function updateMe(payload: UpdateMeRequest){
+  const res = await nextServer.patch<User>('/users/me', payload);
+  return res.data
+}
