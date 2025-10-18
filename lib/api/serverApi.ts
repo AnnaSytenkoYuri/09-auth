@@ -10,27 +10,27 @@ import { FetchNotesResponse } from "./clientApi";
 import { User } from "@/types/user";
 import { cookies } from "next/headers";
 
-const myToken = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
-
-export async function fetchNotes(
+export async function fetchServerNotes(
   page = 1,
   perPage = 12,
   search = "",
   tag?: string
 ): Promise<FetchNotesResponse> {
+  const cookieStore = await cookies();
   const response = await nextServer.get<FetchNotesResponse>("/notes", {
     params: { page, perPage, search, tag },
     headers: {
-      Authorization: `Bearer ${myToken}`,
+      Cookie: cookieStore.toString(),
     },
   });
   return response.data;
 }
 
-export async function fetchNoteById(id: string): Promise<Note> {
+export async function fetchServerNoteById(id: string): Promise<Note> {
+  const cookieStore = await cookies();
   const response = await nextServer.get<Note>(`/notes/${id}`, {
     headers: {
-      Authorization: `Bearer ${myToken}`,
+      Cookie: cookieStore.toString(),
     },
   });
   return response.data;
