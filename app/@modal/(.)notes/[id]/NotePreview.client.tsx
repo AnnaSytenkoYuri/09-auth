@@ -6,7 +6,7 @@ import LoadingIndicator from "@/app/loading";
 
 import css from "./NotePreview.module.css";
 import Modal from "@/components/Modal/Modal";
-import ErrorMessage from "@/app/(privet routes)/notes/[id]/error";
+import ErrorMessage from "@/app/(private routes)/notes/[id]/error";
 import { fetchNoteById } from "@/lib/api/clientApi";
 
 interface NotePreviewProps {
