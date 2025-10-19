@@ -8,7 +8,7 @@ export interface Props {
   params: Promise<{ id: string }>;
 }
 
-export default async function GET(request: NextRequest, { params }: Props) {
+export async function GET(request: NextRequest, { params }: Props) {
   try {
     const cookieStore = await cookies();
     const { id } = await params;
