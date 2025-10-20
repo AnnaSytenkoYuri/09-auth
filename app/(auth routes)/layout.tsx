@@ -10,7 +10,7 @@ export default function AuthLayout({ children }: Props) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   useEffect(() => {
-    router.prefetch("");
+    router.refresh();
     setLoading(false);
   }, [router]);
   return <>{loading ? <div>Loading...</div> : children}</>;

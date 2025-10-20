@@ -3,8 +3,10 @@ import { getServerMe } from "@/lib/api/serverApi";
 import css from "./ProfilePage.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
 
-export async function generateMetadata() {
+export async function generateMetadata():Promise<Metadata> {
+  const user = await getServerMe()
   return {
     title: "Profile",
     description: "My profile page on NoteHub",
@@ -15,7 +17,7 @@ export async function generateMetadata() {
       siteName: "NoteHub",
       images: [
         {
-          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+          url: user.avatar || "https://notehub.com/default-avatar.png",
           width: 1200,
           height: 630,
           alt: "Profile",

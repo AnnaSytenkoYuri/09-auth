@@ -42,7 +42,7 @@ export async function fetchNoteById(id: string): Promise<Note> {
 }
 
 export interface RegisterRequest {
-  userName: string;
+  username: string;
   email: string;
   password: string;
   id?: string;
