@@ -43,6 +43,7 @@ export default function EditProfile() {
             <input
               id="username"
               type="text"
+              name="username" 
               className={css.input}
               defaultValue={user?.username}
               required
