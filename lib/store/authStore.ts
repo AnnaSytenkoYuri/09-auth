@@ -1,7 +1,6 @@
 import { User } from "@/types/user";
 import { create } from "zustand";
 
-
 interface AuthStore {
   isAuthenticated: boolean;
   user: User | null;
@@ -10,7 +9,7 @@ interface AuthStore {
 }
 
 export const useAuthStore = create<AuthStore>()((set) => ({
-  isAuthenticated: true,
+  isAuthenticated: false,
   user: null,
   setUser: (user: User) => {
     set(() => ({ user, isAuthenticated: true }));

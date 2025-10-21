@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 
-export async function generateMetadata():Promise<Metadata> {
-  const user = await getServerMe()
+export async function generateMetadata(): Promise<Metadata> {
+  const user = await getServerMe();
   return {
     title: "Profile",
     description: "My profile page on NoteHub",
@@ -29,7 +29,7 @@ export async function generateMetadata():Promise<Metadata> {
 }
 
 export default async function Profile() {
-  const user = await getServerMe()
+  const user = await getServerMe();
   return (
     <>
       <main className={css.mainContent}>
@@ -42,7 +42,10 @@ export default async function Profile() {
           </div>
           <div className={css.avatarWrapper}>
             <Image
-              src="https://ac.goit.global/fullstack/react/default-avatar.jpg"
+              src={
+                user.avatar ??
+                "https://ac.goit.global/fullstack/react/default-avatar.jpg"
+              }
               alt="User Avatar"
               width={120}
               height={120}
